@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class GaussJordanElim {
 
     // Implements Gaussian elimination with partial pivoting
@@ -27,66 +29,53 @@ public class GaussJordanElim {
         }
     }
 
-    public float[][] BFEWithGaussJordanElim(float[][] matrix, float[] colVect, int n){
+    public float[][] BFEWithGaussJordanElim(float[][] matrix, float[] colVect, int n) {
 
-        float [][] fullArr = new float[n][n+1];
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n+1; j++){
-                if(j==n){
+        float[][] fullArr = new float[n][n + 1];
+        int pivotRowAccum;
+        boolean swap;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n + 1; j++) {
+                if (j == n) {
                     fullArr[i][j] = colVect[i];
-                }else{
+                } else {
                     fullArr[i][j] = matrix[i][j];
                 }
             }
         }
-        for(){
-            for()
-            for()
-            for(){
-                for()
+        for (int i = 0; i < n; i++) {
+            swap = false;
+            pivotRowAccum = i;
+            for (int j = i + 1; j < n; j++) {
+                if (Math.abs(fullArr[j][i]) > Math.abs(fullArr[pivotRowAccum][i])) {
+                    pivotRowAccum = j;
+                    swap = true;
+                }
+
+            }
+            if (swap) {
+                float[] temp;
+                temp = fullArr[i];// potentially wrong
+                fullArr[i] = fullArr[pivotRowAccum];
+                fullArr[pivotRowAccum] = temp;
+
+            }
+            float pivotMult = fullArr[i][i];
+            for (int k = i; k < n + 1; k++) {
+                fullArr[i][k] = fullArr[i][k] / pivotMult;
+            }
+            for (int l = 0; l < n; l++) {
+                if (l != i) {
+                    float mult = fullArr[l][i] / fullArr[i][i];
+                    for (int m = i; m < n + 1; m++) {
+                        fullArr[l][m] = fullArr[l][m] - fullArr[i][m] * mult;
+                    }
+                }
             }
         }
+        return fullArr;
+
     }
 
-    public int PerformOperation(float a[][], int n) {
-        int i, j, k = 0, c, flag = 0, m = 0;
-        float pro = 0;
-
-        // Performing elementary operations
-        for (i = 0; i < n; i++) {
-            if (a[i][i] == 0) {
-                c = 1;
-                while ((i + c) < n && a[i + c][i] == 0)
-                    c++;
-                if ((i + c) == n) {
-                    flag = 1;
-                    break;
-                }
-                for (j = i, k = 0; k <= n; k++) {
-                    float temp = a[j][k];
-                    a[j][k] = a[j + c][k];
-                    a[j + c][k] = temp;
-                }
-            }
-
-            for (j = 0; j < n; j++) {
-
-                // Excluding all i == j
-                if (i != j) {
-
-                    // Converting Matrix to reduced row
-                    // echelon form(diagonal matrix)
-                    float p = a[j][i] / a[i][i];
-
-                    for (k = 0; k <= n; k++)
-                        a[j][k] = a[j][k] - (a[i][k]) * p;
-                }
-            }
-        }
-        for (int l = 0; l < n; l++) {
-            System.out.print(a[l][n] / a[l][l] + " ");
-        }
-
-        return flag;
-    }
 }
