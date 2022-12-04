@@ -12,22 +12,11 @@ public class GaussJordanElim {
     // to n−1 do pivotrow←i for j←i+1
     // to n do if|A[j,i]|>|A[pivotrow,i]|pivotrow←j for k←
     // i to n+1 do
-
     // swap(A[i, k], A[pivotrow, k])
     // for j ← i + 1 to n do
     // temp ← A[j, i] / A[i, i]
     // for k ← i to n + 1 do
     // A[j, k]← A[j, k] − A[i, k] ∗ temp
-
-    public void BetterForwardElimination(int[][] matrix, int colVect) {
-        int n = matrix.length;
-        for (int i = 0; i < n; i++) {
-            matrix[i][n + 1] = colVect;
-        }
-        for (int i = 0; i < n - 1; i++) {
-
-        }
-    }
 
     public float[][] BFEWithGaussJordanElim(float[][] matrix, float[] colVect, int n) {
 

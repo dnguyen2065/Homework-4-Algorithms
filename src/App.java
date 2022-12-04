@@ -72,5 +72,24 @@ public class App {
             System.out.println("x_" + (i + 1) + " = " + Math.round(end[i][12]));
         }
 
+        int[][] grid = {
+                { 35, 89, 52, 66, 82, 20, 95, 21 },
+                { 79, 5, 14, 23, 78, 37, 40, 74 },
+                { 32, 59, 17, 25, 31, 4, 16, 63 },
+                { 91, 11, 77, 48, 13, 71, 92, 15 },
+                { 56, 70, 47, 64, 22, 88, 67, 12 },
+                { 83, 97, 94, 27, 65, 51, 30, 7 },
+                { 10, 41, 1, 86, 46, 24, 53, 93 },
+                { 96, 33, 44, 98, 75, 68, 99, 84 }
+        };
+
+        MostPreciousPath mpp = new MostPreciousPath();
+
+        int[][] mostPreciousPath = new int[grid.length][grid.length];
+        mpp.initArray(mostPreciousPath);
+        mpp.maxPathFill(grid, mostPreciousPath);
+        mpp.analyzePath(grid, mostPreciousPath);
+        System.out.println(Arrays.toString(mpp.longestPath(mostPreciousPath)));
+        // mpp.longestPath(mostPreciousPath);
     }
 }
