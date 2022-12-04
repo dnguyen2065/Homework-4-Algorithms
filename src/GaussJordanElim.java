@@ -56,7 +56,7 @@ public class GaussJordanElim {
             }
             if (swap) {
                 float[] temp;
-                temp = fullArr[i];// potentially wrong
+                temp = fullArr[i];
                 fullArr[i] = fullArr[pivotRowAccum];
                 fullArr[pivotRowAccum] = temp;
 
@@ -75,7 +75,6 @@ public class GaussJordanElim {
             }
         }
         return fullArr;
-
     }
 
 }
