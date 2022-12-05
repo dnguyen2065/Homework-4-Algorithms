@@ -13,19 +13,15 @@ import java.util.Arrays;
          * verified as a solution to the system.
          * 
          * ANSWER: This system of equations cannot be solved by normal
-         * ForwardElimination because it could be distorted by rounding errors from when
-         * the scaling factor gets so large that the difference between numbers of great
-         * magnitude creates the possibility of massive rounding error.
+         * ForwardElimination because it belongs to an edge case that would divide by zero. The forward
+         * elimination algorithm does not take this case into account when a[i,i] = 0.
          * 
          * How does the BetterForwardElimination algorithm on page 211 of Levitin rem-
          * edy this?
          * 
          * ANSWER: BetterForwardElimination solves this problem by implementing partial
-         * pivoting. Partial pivoting works by looking for a row with the largest
-         * absolute value
-         * of the coefficient in the ith column and swap it with the ith row then use
-         * the
-         * resultant matrix as the ith iteraiton pivot.
+         * pivoting. Partial pivoting allows a[i,i] to never equal zero solving the issue.
+         *
          * 
          * 
          * Question 2:
@@ -40,13 +36,13 @@ import java.util.Arrays;
          * despite the fact that x = (1, 2, 3) or 1 = 1, x2 = 2, x3 = 3 can be easily
          * verified as a solution to the system.
          * 
-         * ANSWER: In the first for loop of BetterForwardElimination the bottom 2 rows become 
-         * equivalent. Because they are equivalent you cant use partial pivoting on them.
+         * ANSWER: This wont work because the BetterForwardElimination algorithm does not take
+         * into account systems whos answer is undefined or whos has an infinte solution. in this case
+         * 1,2,3 is one of infinite possinble solutions.
          * 
          * What can be done to remedy this shortcoming in the algorithm?
          * 
-         * ANSWER: 
-         * 
+         * ANSWER: to fix this you can add edge cases that find if there are infinitely many or no solution.        * 
          */
 
 public class App {
