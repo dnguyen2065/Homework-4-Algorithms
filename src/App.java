@@ -53,6 +53,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         // Question 3: ---------------------------------------------------
+        System.out.println("Question 3: --------------------");
         GaussJordanElim gje = new GaussJordanElim();
         float[][] matrix = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
                 { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -71,6 +72,7 @@ public class App {
         for (int i = 0; i < 12; i++) {
             System.out.println("x_" + (i + 1) + " = " + Math.round(end[i][12]));
         }
+        System.out.println("Question 4 -----------------------");
 
         int[][] grid = {
                 { 35, 89, 52, 66, 82, 20, 95, 21 },
@@ -84,12 +86,6 @@ public class App {
         };
 
         MostPreciousPath mpp = new MostPreciousPath();
-
-        int[][] mostPreciousPath = new int[grid.length][grid.length];
-        mpp.initArray(mostPreciousPath);
-        mpp.maxPathFill(grid, mostPreciousPath);
-        mpp.analyzePath(grid, mostPreciousPath);
-        System.out.println(Arrays.toString(mpp.longestPath(mostPreciousPath)));
-        // mpp.longestPath(mostPreciousPath);
+        mpp.printPath(mpp.findMostPreciousPath(grid));
     }
 }
